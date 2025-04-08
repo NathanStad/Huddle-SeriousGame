@@ -1,43 +1,43 @@
 <template>
-    <main>
-      <div id="content">
-        <h2>Ready to coach ?</h2>
-        <p>Before we hit the field, we need one important detail…</p>
-      </div>
-      <div class="background-green background">
-        <p>What’s your name, Coach?</p>
-        <input type="text" placeholder="Last name" v-model="lastName" />
-        <button class="button" @click="submit" :disabled="isButtonDisabled">Start the Game</button>
-      </div>
-    </main>
-  </template>
-  
-  <script setup>
-  import { ref, computed } from "vue";
-  const route = useRoute();
-  const playerStore = usePlayerStore()
+  <main>
+    <div id="content">
+      <h2>Ready to coach ?</h2>
+      <p>Before we hit the field, we need one important detail…</p>
+    </div>
+    <div class="background-green background">
+      <p>What’s your name, Coach?</p>
+      <input type="text" placeholder="Last name" v-model="lastName" />
+      <button class="button" @click="submit" :disabled="isButtonDisabled">Start the Game</button>
+    </div>
+  </main>
+</template>
 
-    function startGame() {
-    playerStore.setPlayer('Alex')
-    }
-  
-  const lastName = ref("");
-  
-  const isButtonDisabled = computed(() => {
-    return !lastName.value || lastName.value.length < 4;
-  });
-  
-  const submit = () => {
-    if (lastName.value) {
-      // Store the last name in local storage
-      localStorage.setItem("lastName", lastName.value);
-      // Redirect to the game page
-      navigateTo("/game");
-    } else {
-      alert("Please enter your last name.");
-    }
-  };
-  </script>
+<script setup>
+import { ref, computed } from 'vue';
+import { usePlayerStore } from '../stores/player.js';
+import { useRouter } from 'vue-router';
+
+const playerStore = usePlayerStore();
+const route = useRouter();
+
+const lastName = ref("");
+
+const isButtonDisabled = computed(() => {
+  return !lastName.value || lastName.value.length < 4;
+});
+
+const submit = () => {
+  if (lastName.value) {
+    // Créer le joueur dans le store Pinia
+    playerStore.createPlayer(lastName.value);
+
+    // Rediriger vers la page dashboard
+    route.push('./dashboard');
+  } else {
+    alert("Please enter your last name.");
+  }
+};
+</script>
   
   <style scoped>
   @import url("/assets/css/main.css");
@@ -87,10 +87,10 @@
   .background input {
       width: 75%;
       height: 20%;
-      background: rgba(255, 255, 255,0.3);
+      background: rgba(255, 255, 255,0.15);
       border: 5px solid #f9d5e7;
       color: #f9d5e7 !important;
-      font-size: 1.5rem ;
+      font-size: 2rem ;
       font-weight: 900;
       padding: 20px;
       border-radius: 20px;

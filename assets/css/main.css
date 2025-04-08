@@ -41,7 +41,10 @@ body{
     border-radius: 100px;
     margin-bottom: 2%;
     transition: 0.3s ease-in-out;
+    cursor: pointer;
+    border: none;
 }
+.button-green,
 .button:hover{
     transform: scale(0.95);
 }

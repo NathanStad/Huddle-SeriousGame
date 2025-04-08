@@ -1,7 +1,8 @@
 <template></template>
 <script setup>
 definePageMeta({
-  layout: "start",
+  layout: "intro",
+  customImage: "intro-game.jpg",
   link: "/game",
 });
 </script>
