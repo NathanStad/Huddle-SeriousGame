@@ -2,7 +2,7 @@
 
   <DataBox :style="{ position:'absolute', top: '20px', right: '20px' }" />
 
-  <Point numero="Intro" locked="true" link="intro" :style="{ position:'absolute', bottom: '15%', left: '10%' }" />
+  <Point numero="Intro" locked="true" link="game/intro" :style="{ position:'absolute', bottom: '15%', left: '10%' }" />
   <Point numero="1" locked="false" link="" :style="{ position:'absolute', top: '40%', left: '25%' }" />
   <Point numero="2" locked="false" link="" :style="{ position:'absolute', bottom: '30%', left: '40%' }"/>
   <Point numero="3" locked="false" link="" :style="{ position:'absolute', top: '30%', right: '40%' }" />

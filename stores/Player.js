@@ -12,7 +12,6 @@ export const usePlayerStore = defineStore('player', {
       choice1: null, // Valeur du choix 1
       choice2: null, // Valeur du choix 2
       choice3: null, // Valeur du choix 3
-      choice4: null, // Valeur du choix 4
     },
   }),
 
@@ -29,7 +28,6 @@ export const usePlayerStore = defineStore('player', {
         choice1: null,
         choice2: null,
         choice3: null,
-        choice4: null,
       };
     },
 

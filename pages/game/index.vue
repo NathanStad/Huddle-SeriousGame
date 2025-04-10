@@ -3,7 +3,7 @@
     definePageMeta({
       layout: "home",
       customTitle: "Game Day Serious Game",
-      customKImage: "11-removebg-preview.png",
+      customImage: "11-removebg-preview.png",
       link: "/game",
     });
   </script>

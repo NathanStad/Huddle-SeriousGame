@@ -26,7 +26,7 @@ const submit = () => {
   console.log(props.locked);
   
   if (props.locked == 'true') {
-    router.push({ path: `/game/${props.link}` });
+    router.push({ path: `/${props.link}` });
   }
 };
 

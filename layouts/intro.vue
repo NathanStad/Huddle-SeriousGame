@@ -7,15 +7,11 @@
     </div>
     <div class="button-green button" @click="submit">Start coaching</div>
     <img src="@/public/LogoHuddleVert.png" alt="logo" />
-    <a :href="BackDashboard">
-      <img src="@/public/Union.svg" alt="logo" class="back" />
-    </a>
+      <img src="@/public/Union.svg" alt="logo" class="back" @click="returnToDashboard" />
   </main>
 </template>
 
 <script setup>
-import { ref, computed } from "vue";
-import { useRouter } from "vue-router";
 const route = useRoute();
 const pageImage = computed(
   () => route.meta?.customImage || "intro.jpg"
@@ -23,6 +19,9 @@ const pageImage = computed(
 const link = computed(() => route.meta?.link || "/training");
 
 const BackDashboard = ref(link.value + "/dashboard");
+const returnToDashboard = () => {
+  router.push(BackDashboard.value);
+};
 
 const description = ref("Description par défaut");
 const description2 = ref("Deuxième description par défaut");
@@ -103,6 +102,7 @@ img {
   position: absolute;
   top: 20px;
   left: 20px;
+  cursor: pointer;
 }
 
 </style>

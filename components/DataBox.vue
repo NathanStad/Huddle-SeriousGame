@@ -1,6 +1,6 @@
 <template>
   <div class="stats-container background-green">
-    <Gauge label="Team moral" :value="playerMorale" icon="⭐" />
+    <Gauge label="Team morale" :value="playerMorale" icon="⭐" />
     <Gauge label="Team skill level" :value="playerSkill" icon="⚡" />
   </div>
 </template>
@@ -20,5 +20,8 @@ const playerSkill = computed(() => playerStore.getPlayerSkill);
   border-radius: 1rem;
   width: 300px;
   z-index: 3;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 }
 </style>

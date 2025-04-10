@@ -16,7 +16,7 @@ const route = useRoute();
 // Accès à une meta personnalisée
 const pageTitle = computed(() => route.meta?.customTitle || "Titre par défaut");
 const pageImage = computed(
-  () => route.meta?.customImage || "Mots-clés par défaut"
+  () => route.meta?.customImage || "9-removebg-preview.png"
 );
 const link = computed(() => route.meta?.link);
 </script>

@@ -28,7 +28,7 @@ div{
     position: absolute;
     top: 20px;
     left: 20px;
-    width: 25%;
+    min-width: 25%;
     height: 12%;
     display: flex;
     align-items: center;
@@ -38,6 +38,7 @@ div{
     font-family: 'Berlin Sans FB', sans-serif;
     background-color: white;
     border-radius: 30px ;
+    padding: 0 20px;
 }
 img{
     width: 10%;

@@ -1,6 +1,6 @@
 <template>
   <div class="cloud">
-    <h1>Welcome, {{ playerName }} Coach.</h1>
+    <h1>Welcome, <br> Coach {{ playerName }} !</h1>
     <p>
       {{ props.description }}
     </p>

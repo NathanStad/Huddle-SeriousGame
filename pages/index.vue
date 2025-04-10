@@ -1,11 +1,9 @@
-<template>
-  <h1>TEST</h1>
-</template>
-
-<script setup>
-navigateTo('/game')
-</script>
-
-<style scoped>
-
-</style>
+<template></template>
+  <script setup>
+    definePageMeta({
+      layout: "home",
+      customTitle: "Coach in the Making Serious Game",
+      customImage: "9-removebg-preview.png",
+      link: "/training",
+    });
+  </script>
