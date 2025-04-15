@@ -1,11 +1,11 @@
 <template>
       <slot />
   <main>
-    <img src="@/public/LogoHuddleVert.png" alt="logo" class="back" />
+    <img src="@/assets/images/LogoHuddleVert.png" alt="logo" class="back" />
     <h1>{{ badge.title }}</h1>
     <h2>{{badge.message}}</h2>
     <div class="background-green">
-        <img src="@/public/terrain.png" alt="Terrain" />
+        <img src="@/assets/images/terrain.png" alt="Terrain" />
         <img :src="'../../badge/'+badge.badge" alt="Badge" id="badge" />
     </div>
   </main>
@@ -22,7 +22,12 @@ onMounted(() => {
     }, 20000);
 });
 console.log(badge.value);
-
+useHead({
+  title: 'Huddle - Serious Game',
+  meta: [
+    { name: 'description', content: 'My amazing site.' }
+  ]
+})
 </script>
 
 <style scoped>
@@ -30,7 +35,7 @@ console.log(badge.value);
 
 main {
   width: 100vw;
-  height: 100vh;
+  height: 100dvh;
   background-size: cover;
   background-position: center bottom;
   display: flex;

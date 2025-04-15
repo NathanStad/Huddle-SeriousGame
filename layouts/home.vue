@@ -1,8 +1,8 @@
 <template>
   <main>
-    <img :src="pageImage" alt="" class="decoration" />
+    <img :src="`../../img/${pageImage}`" alt="" class="decoration" />
     <div id="content">
-      <img src="@/public/LogoHuddleVert.png" alt="logo" />
+      <img src="@/assets/images/LogoHuddleVert.png" alt="logo" />
       <h1>{{ pageTitle }}</h1>
       <a :href="link + '/start'" class="button-green button">LET’S GO</a>
       <p>Find your style, build trust, and help your team grow.</p>
@@ -19,6 +19,13 @@ const pageImage = computed(
   () => route.meta?.customImage || "9-removebg-preview.png"
 );
 const link = computed(() => route.meta?.link);
+
+useHead({
+  title: 'Huddle - Serious Game',
+  meta: [
+    { name: 'description', content: 'My amazing site.' }
+  ]
+})
 </script>
 
 <style scoped>
@@ -29,7 +36,7 @@ main {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh;
+  height: 100dvh;
   background-color: #f9d5e7;
 }
 #content {

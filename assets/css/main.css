@@ -22,12 +22,12 @@ body{
 }
 
 .background-green{
-    background-image: url('/public/backgorund/FondGazon.jpg');
+    background-image: url('@/assets/images/FondGazon.jpg');
     background-size: cover;
 }
 
 .button-green{
-    background-image: url('/public/backgorund/FondGazon.jpg');
+    background-image: url('@/assets/images/FondGazon.jpg');
     background-size: cover;
     color: #F9D5E7;
     font-family: 'Berlin Sans FB', sans-serif;

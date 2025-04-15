@@ -2,7 +2,12 @@
   <slot />
   <DataBox :style="{ position: 'absolute', top: '20px', right: '20px' }" />
   <a :href="BackDashboard">
-    <img src="@/public/Union.svg" alt="logo" class="back" />
+    <img
+      src="@/assets/images/Union.svg"
+      alt="logo"
+      class="back"
+      @click="returnToDashboard"
+    />
   </a>
   <main
     v-if="currentStep"
@@ -41,18 +46,23 @@ const step = computed(() => {
 const pageImage = computed(() => route.meta?.customImage || "intro.jpg");
 const stepStore = useStepStore();
 const currentStep = computed(() => stepStore.getCurrentStep);
-console.log(currentStep.value);
 
 const valid = ref(false);
 watchEffect(() => {
   valid.value = currentStep.value?.answers?.length > 2;
 });
 let submit;
+const router = useRouter();
+
+const link = computed(() => route.meta?.link || "/training");
+const BackDashboard = ref(link.value + "/dashboard");
+const returnToDashboard = () => {
+  router.push(BackDashboard.value);
+};
 watchEffect(() => {
   const playerStore = usePlayerStore();
   const router = useRouter();
   const link = computed(() => route.meta?.link || "/training");
-
   submit = () => {
     const selectedOption = document.querySelector(
       'input[name="options"]:checked'
@@ -62,11 +72,17 @@ watchEffect(() => {
       const selectedAnswer = currentStep.value?.answers?.[selectedAnswerIndex];
       playerStore.updatePlayerMorale(selectedAnswer.effects.morale);
       playerStore.updatePlayerSkill(selectedAnswer.effects.skill);
-
+      playerStore.incrementPlayerLevel();
       let nextStep = selectedAnswer.nextStep;
       if (nextStep.startsWith("step")) {
         nextStep = nextStep.slice(4); // Remove the first 4 characters if it's a step
       }
+
+      playerStore.updateChoice(`choice${step.value}`, {
+        morale: selectedAnswer.effects.morale,
+        skill: selectedAnswer.effects.skill,
+        nextStep: selectedAnswer.nextStep,
+      });
 
       if (nextStep === "end") {
         router.push({ path: `${link.value}/end/` });
@@ -79,6 +95,12 @@ watchEffect(() => {
   };
 });
 
+useHead({
+  title: 'Huddle - Serious Game',
+  meta: [
+    { name: 'description', content: 'My amazing site.' }
+  ]
+})
 </script>
 
 <style scoped>
@@ -89,7 +111,7 @@ main {
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
-  height: 100vh;
+  height: 100dvh;
   background-color: #f9d5e7;
   background-size: cover;
   background-position: center center;

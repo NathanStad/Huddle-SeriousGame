@@ -1,9 +1,12 @@
 <template>
-  <div @click="submit" :class="['background-green', 'point', { 'locked-point': props.locked === 'false' }]">
-    <p>{{ props.numero }}</p>
-    <div></div>
-    <div class="dark" v-if="props.locked == 'false'"></div>
-    <svg v-if="props.locked == 'false'" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <div @click="submit" :class="['background-green', 'point', { 'locked-point': locked === 'false', 'done-point': locked === 'done'}]">
+    <p>{{ numero }}</p>
+    <div id="data-info" v-if="locked == 'done' && data">
+      <p>⭐ {{ data.morale }} Morale</p>
+      <p>⚡ {{ data.skill }} Skill level</p>
+    </div>
+    <div class="dark" v-if="locked == 'false'"></div>
+    <svg v-if="locked == 'false'" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
       <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
       <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
       <g id="SVGRepo_iconCarrier">
@@ -22,10 +25,13 @@ const props = defineProps({
 
 const router = useRouter();
 
+const playerStore = usePlayerStore();
+
+const data = ref(playerStore.getChoiceByKey(`choice${props.numero}`));
+
 const submit = () => {
-  console.log(props.locked);
   
-  if (props.locked == 'true') {
+  if (props.locked == "true") {
     router.push({ path: `/${props.link}` });
   }
 };
@@ -47,12 +53,37 @@ const submit = () => {
 .point.locked-point{
   cursor:not-allowed !important;
 }
+
+.done-point{
+  cursor: not-allowed;
+}
 .point p {
   color: #f9d5e7;
   font-size: 20px;
   font-weight: 700;
   text-align: center;
   font-family: 'Berlin Sans FB', sans-serif;
+}
+
+#data-info {
+  display: flex;
+  padding: 10px;
+  background-color: #F9D5E7;
+  justify-content: center;
+  align-items:flex-start;
+  flex-direction: column;
+  gap: 5px;
+  margin-top: 10px;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 20px;
+  width: 150%;
+  & p {
+    font-size: 0.8rem;
+    color: #1D6D0A;
+  }
 }
 
 .point svg {

@@ -14,11 +14,11 @@
 
 <script setup>
 import { ref, computed } from 'vue';
-import { usePlayerStore } from '../stores/player.js';
 import { useRouter } from 'vue-router';
 
 const playerStore = usePlayerStore();
 const route = useRouter();
+const link = computed(() => route.meta?.link || "/training");
 
 const lastName = ref("");
 
@@ -32,11 +32,18 @@ const submit = () => {
     playerStore.createPlayer(lastName.value);
 
     // Rediriger vers la page dashboard
-    route.push('./dashboard');
+    route.push(link.value+"/dashboard");
   } else {
     alert("Please enter your last name.");
   }
 };
+
+useHead({
+  title: 'Huddle - Serious Game',
+  meta: [
+    { name: 'description', content: 'My amazing site.' }
+  ]
+})
 </script>
   
   <style scoped>
@@ -47,7 +54,7 @@ const submit = () => {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100vh;
+    height: 100dvh;
     background-color: #f9d5e7;
   }
   #content {

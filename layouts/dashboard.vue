@@ -1,7 +1,7 @@
 <template>
-  <main :style="{ backgroundImage: `url(../backgorund/${pageImage})` }">
+  <main :style="{ backgroundImage: `url(../../backgorund/${pageImage})` }">
     <div>{{ pageTitle }}</div>
-    <img src="@/public/LogoHuddleVert.png" alt="logo" />
+    <img src="@/assets/images/LogoHuddleVert.png" alt="logo" />
     <slot />
   </main>
 </template>
@@ -12,7 +12,12 @@ const pageTitle = computed(() => route.meta?.customTitle || "Titre par défaut")
 const pageImage = computed(
   () => route.meta?.customImage || "Mots-clés par défaut"
 );
-
+useHead({
+  title: 'Huddle - Serious Game',
+  meta: [
+    { name: 'description', content: 'My amazing site.' }
+  ]
+})
 </script>
 
 <style scoped>
@@ -20,9 +25,9 @@ const pageImage = computed(
 
 main{
     width: 100vw;
-    height: 100vh;
+    height: 100dvh;
     background-size: cover;
-    background-position: center bottom;
+    background-position: center center;
 }
 div{
     position: absolute;

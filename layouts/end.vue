@@ -13,16 +13,22 @@
 const route = useRoute();
 const router = useRouter();
 const pageSubtitle = computed(
-  () => route.meta?.customSubtitle || "Titre par défaut"
+  () => route.meta?.customSubtitle || "Rapid Progress"
 );
 const link = computed(() => route.meta?.link || "/training");
-const pageTitle = computed(() => route.meta?.customTitle || "Titre par défaut");
+const pageTitle = computed(() => route.meta?.customTitle || "The team has embraced you. You’re seen as effective and structured !");
 const pageImage = computed(
   () => route.meta?.customImage || "Mots-clés par défaut"
 );
 const submit =() => {
     router.push({ path: `${link.value}/badge/` });
 };
+useHead({
+  title: 'Huddle - Serious Game',
+  meta: [
+    { name: 'description', content: 'My amazing site.' }
+  ]
+})
 </script>
 
 <style scoped>
@@ -30,7 +36,7 @@ const submit =() => {
 
 main {
   width: 100vw;
-  height: 100vh;
+  height: 100dvh;
   background-size: cover;
   background-position: center bottom;
   display: flex;

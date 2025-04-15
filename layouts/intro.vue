@@ -1,13 +1,13 @@
 <template>
-  <main :style="{ backgroundImage: `url(../backgorund/${pageImage})` }">
+  <main :style="{ backgroundImage: `url(../../backgorund/${pageImage})` }">
     <Cloud :description="description" :description2="description2" />
     <div class="content">
       <DataBox />
       <span>{{ texte }}</span>
     </div>
     <div class="button-green button" @click="submit">Start coaching</div>
-    <img src="@/public/LogoHuddleVert.png" alt="logo" />
-      <img src="@/public/Union.svg" alt="logo" class="back" @click="returnToDashboard" />
+    <img src="@/assets/images/LogoHuddleVert.png" alt="logo" />
+      <img src="@/assets/images/Union.svg" alt="logo" class="back" @click="returnToDashboard" />
   </main>
 </template>
 
@@ -47,8 +47,16 @@ const submit = () => {
   if (playerStore.getPlayerLevel === 0) {
     playerStore.incrementPlayerLevel();
   }
+  playerStore.updateChoice(`choice0`, true);
   router.push(link.value + "/step/1");
 };
+
+useHead({
+  title: 'Huddle - Serious Game',
+  meta: [
+    { name: 'description', content: 'My amazing site.' }
+  ]
+})
 </script>
 
 <style scoped>
@@ -59,7 +67,7 @@ main {
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
-  height: 100vh;
+  height: 100dvh;
   background-size: cover;
   background-position: center center;
 }
